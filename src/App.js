@@ -13,7 +13,7 @@ function App() {
       <div className="container-fluid text-center">
         <div className="row content">
           <SideNav />
-          <div className="col-sm-8 text-left">
+          <div class="col-sm-8 text-left maincont">
             <Outlet />
           </div>
           <Ads />

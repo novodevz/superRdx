@@ -69,45 +69,41 @@ const Crud = () => {
           <ul>
             {prods.length === 0 ? <h2>list is empty</h2> : <h2>prod list:</h2>}
             {prods.map((prod) => (
-              <li key={prod.id}>
-                <strong>name:</strong> {prod.name} - <strong>price:</strong> $
-                {prod.price}
-                {" | "}
-                <input
-                  type="text"
-                  // value={updProdName}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setUpdProdName(value);
-                  }}
-                  placeholder="New Name"
-                />
-                {" | "}
-                <input
-                  type="number"
-                  // value={updProdPrice}
-                  onChange={(e) => {
-                    const value = parseFloat(e.target.value);
-                    setUpdProdPrice(value);
-                  }}
-                  placeholder="New Price"
-                />
-                {" | "}
-                <button
-                  onClick={() =>
-                    handleUpdateProd(prod.id, {
-                      name: updProdName ?? prod.name,
-                      price: updProdPrice ?? prod.price,
-                    })
-                  }
-                >
-                  Update product
-                </button>
-                {" | "}
-                <button onClick={() => handleDeleteProd(prod.id)}>
-                  Delete
-                </button>
-              </li>
+              <div className="card">
+                <li key={prod.id}>
+                  <div className="card-body">
+                    <h5 className="card-title">
+                      <strong>Name:</strong> {prod.name} -{" "}
+                      <strong>Price:</strong> ${prod.price}
+                    </h5>
+                    <input
+                      type="text"
+                      onChange={(e) => setUpdProdName(e.target.value)}
+                      placeholder="New Name"
+                    />
+                    <input
+                      type="number"
+                      onChange={(e) =>
+                        setUpdProdPrice(parseFloat(e.target.value))
+                      }
+                      placeholder="New Price"
+                    />
+                    <button
+                      onClick={() =>
+                        handleUpdateProd(prod.id, {
+                          name: updProdName || prod.name,
+                          price: updProdPrice || prod.price,
+                        })
+                      }
+                    >
+                      Update Product
+                    </button>
+                    <button onClick={() => handleDeleteProd(prod.id)}>
+                      Delete
+                    </button>
+                  </div>
+                </li>
+              </div>
             ))}
           </ul>
         </div>

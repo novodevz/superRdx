@@ -17,7 +17,7 @@ const Nav = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-inverse">
+      <nav className="navbar navbar-inverse mynav">
         <div className="container-fluid">
           <div className="navbar-header">
             <button
