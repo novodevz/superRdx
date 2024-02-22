@@ -9,6 +9,7 @@ import Main from "./components/Main";
 import Login from "./features/auth/Login";
 import Register from "./features/auth/Register";
 import Crud from "./features/crud/Crud";
+import Secret from "./components/Secret";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -23,6 +24,7 @@ root.render(
             <Route path="/crud" element={<Crud />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/secret" element={<Secret />} />
           </Route>
         </Routes>
       </Provider>

@@ -2,15 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import { useSelector, useDispatch } from "react-redux";
 import {
-  slctUsername,
-  slctRegister,
+  // slctUsername,
+  // slctRegister,
   slctLogin,
   logoutRdcr,
 } from "../features/auth/authSlice";
 
 const Nav = () => {
-  const username = useSelector(slctUsername);
-  const register = useSelector(slctRegister);
+  //   const username = useSelector(slctUsername);
+  //   const register = useSelector(slctRegister);
   const login = useSelector(slctLogin);
 
   const dispatch = useDispatch();

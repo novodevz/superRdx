@@ -1,13 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { authFn } from "./loginAPI";
-import { handelToken } from "./scripts";
+import { handelToken, tokenTTL } from "./scripts";
 
 const initialState = {
   username: "",
   register: false,
   login: false,
+  loginTimeStamp: "",
+  ttl: 0,
   remember: false,
-  reqStat: "reqStat",
+  reqStat: "",
 };
 
 export const loginAsc = createAsyncThunk("auth/authFn", async (d) => {
@@ -25,6 +27,10 @@ export const authSlc = createSlice({
     logoutRdcr: (state) => {
       sessionStorage.clear();
       state.login = false;
+      state.username = "";
+      state.loginTimeStamp = "";
+      state.ttl = 0;
+      state.remember = false;
     },
   },
   extraReducers: (builder) => {
@@ -39,10 +45,13 @@ export const authSlc = createSlice({
         state.reqStat = action.meta.requestStatus;
         console.log(state.reqStat);
         if (action.meta.arg.url === "register") state.register = true;
-        if (action.meta.arg.url === "login") state.login = true;
-        state.username = action.meta.arg.username;
-        // console.log("register: ", state.register, "login: ", state.login);
-        handelToken(action.payload, state.remember.remember);
+        if (action.meta.arg.url === "login") {
+          state.login = true;
+          state.username = action.meta.arg.username;
+          state.loginTimeStamp = Date.now();
+          handelToken(action.payload, state.remember.remember);
+          state.ttl = tokenTTL();
+        }
       })
       .addCase(loginAsc.rejected, (state, action) => {
         state.reqStat = action.meta.requestStatus;
@@ -56,6 +65,8 @@ export const { rememberRdcr, logoutRdcr } = authSlc.actions;
 export const slctUsername = (state) => state.auth.username;
 export const slctRegister = (state) => state.auth.register;
 export const slctLogin = (state) => state.auth.login;
+export const slctLoginTimeStamp = (state) => state.auth.loginTimeStamp;
+export const slctTTL = (state) => state.auth.ttl;
 export default authSlc.reducer;
 
 // export const cntActions = cntSlc.actions;
