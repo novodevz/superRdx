@@ -1,12 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+// import { Link } from "react-router-dom"; // Import MyLink from react-router-dom
+import MyLink from "./MyLink";
 import { useSelector, useDispatch } from "react-redux";
 import {
   // slctUsername,
   // slctRegister,
   slctLogin,
   logoutRdcr,
-} from "../features/auth/authSlice";
+} from "../auth/authSlice";
 
 const Nav = () => {
   //   const username = useSelector(slctUsername);
@@ -30,62 +31,62 @@ const Nav = () => {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            {/* Replace <a> with <Link> */}
-            <Link to="/" className="navbar-brand">
+            {/* Replace <a> with <MyLink> */}
+            <MyLink to="/" className="navbar-brand">
               super
-            </Link>
+            </MyLink>
           </div>
           <div className="collapse navbar-collapse" id="myNavbar">
             <ul className="nav navbar-nav">
               <li className="active">
-                {/* Replace <a> with <Link> */}
-                <Link to="/" className="nav-link">
+                {/* Replace <a> with <MyLink> */}
+                <MyLink to="/" className="nav-link">
                   Home
-                </Link>
+                </MyLink>
               </li>
               <li>
-                {/* Replace <a> with <Link> */}
-                <Link to="/shop" className="nav-link">
+                {/* Replace <a> with <MyLink> */}
+                <MyLink to="/shop" className="nav-link">
                   shop
-                </Link>
+                </MyLink>
               </li>
               <li>
-                {/* Replace <a> with <Link> */}
-                <Link to="/mycart" className="nav-link">
+                {/* Replace <a> with <MyLink> */}
+                <MyLink to="/mycart" className="nav-link">
                   mycart
-                </Link>
+                </MyLink>
               </li>
               <li>
-                {/* Replace <a> with <Link> */}
-                <Link to="/secret" className="nav-link">
+                {/* Replace <a> with <MyLink> */}
+                <MyLink to="/secret" className="nav-link">
                   secret
-                </Link>
+                </MyLink>
               </li>
               <li>
-                {/* Replace <a> with <Link> */}
-                <Link to="/crud" className="nav-link">
+                {/* Replace <a> with <MyLink> */}
+                <MyLink to="/crud" className="nav-link">
                   crud
-                </Link>
+                </MyLink>
               </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
               {login ? (
                 <li>
-                  {/* Replace <a> with <Link> */}
-                  <Link
+                  {/* Replace <a> with <MyLink> */}
+                  <MyLink
                     to="/"
                     className="nav-link"
                     onClick={() => dispatch(logoutRdcr())}
                   >
                     <span className="glyphicon glyphicon-log-out"></span> Logout
-                  </Link>
+                  </MyLink>
                 </li>
               ) : (
                 <li>
-                  {/* Replace <a> with <Link> */}
-                  <Link to="/login" className="nav-link">
+                  {/* Replace <a> with <MyLink> */}
+                  <MyLink to="/login" className="nav-link">
                     <span className="glyphicon glyphicon-log-in"></span> Login
-                  </Link>
+                  </MyLink>
                 </li>
               )}
             </ul>

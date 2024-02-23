@@ -10,6 +10,10 @@ import Login from "./features/auth/Login";
 import Register from "./features/auth/Register";
 import Crud from "./features/crud/Crud";
 import Secret from "./components/Secret";
+import Super from "./features/super/Super";
+import Dep from "./features/super/Dep";
+import Cat from "./features/super/Cat";
+import Sale from "./features/super/Sale";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -25,6 +29,10 @@ root.render(
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/secret" element={<Secret />} />
+            <Route path="/shop" element={<Super />} />
+            <Route path="/shop/:dep" element={<Dep />} />
+            <Route path="/shop/:dep/:cat" element={<Cat />} />
+            <Route path="/sale" element={<Sale />} />
           </Route>
         </Routes>
       </Provider>
