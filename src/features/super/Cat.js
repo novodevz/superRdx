@@ -26,10 +26,40 @@ const Cat = () => {
       <h1>cat com</h1>
       {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      {prods && (
+      {prods.length !== 0 && (
         <ul>
           {prods.products.map((prod) => (
-            <li key={prod.id}>{prod.name}</li>
+            <div
+              key={prod.id}
+              className="card mb-3"
+              style={{ maxWidth: "540px" }}
+            >
+              <div className="row g-0">
+                <div className="col-md-4">
+                  <img
+                    src={`http://localhost:8000/media/${prod.image}.jpg`}
+                    className="img-fluid rounded-start"
+                    alt={prod.name}
+                    style={{ width: "150px" }}
+                  />
+                </div>
+                <div className="col-md-8">
+                  <div className="card-body">
+                    <h5 className="card-title">{prod.name}</h5>
+                    <p className="card-text">
+                      This is a wider card with supporting text below as a
+                      natural lead-in to additional content. This content is a
+                      little bit longer.
+                    </p>
+                    <p className="card-text">
+                      <small className="text-body-secondary">
+                        Last updated 3 mins ago
+                      </small>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           ))}
         </ul>
       )}
