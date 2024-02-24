@@ -10,7 +10,7 @@ const getAllProds = async (path) => {
     // Make an HTTP GET request to fetch all products
     const response = await axios.get(BASE_URL + path);
     // Return the response data
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);

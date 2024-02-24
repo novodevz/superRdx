@@ -12,7 +12,6 @@ const navSlice = createSlice({
   reducers: {
     setCurrentRoute: (state, action) => {
       state.currentRoute = action.payload;
-      console.log(state.currentRoute, "<----------currentRout");
     },
   },
 });

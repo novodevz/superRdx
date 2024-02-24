@@ -53,7 +53,6 @@ const superSlice = createSlice({
       .addCase(getAllProdsAsync.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = true;
-        console.log(action.payload, "<----- in slice fulfulled");
         state.prods = action.payload; // Update products with the fetched data
       })
       .addCase(getAllProdsAsync.rejected, (state, action) => {

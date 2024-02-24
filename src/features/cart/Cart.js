@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Cart = () => {
+const Cart = ({ count }) => {
   return (
     <div>
       <Link to="/">
         <span className="glyphicon glyphicon-shopping-cart" aria-hidden="true">
-          items count
+          {count}
         </span>
       </Link>
     </div>
@@ -15,6 +15,7 @@ const Cart = () => {
 
 export default Cart;
 
+/* eslint-disable */
 {
   /* <span className="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> */
 }
@@ -44,3 +45,4 @@ export default Cart;
 // };
 
 // export default Cart;
+/* eslint-disable */
