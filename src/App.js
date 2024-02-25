@@ -24,7 +24,7 @@ function App() {
             <SideNav />
           </div>
           <div
-            className="col-sm-8 text-left maincont d-flex justify-content-center"
+            className="col-sm-8 text-left maincont"
             style={{ paddingLeft: "33%" }}
           >
             <div className="col-sm-12 row mytopraw">
