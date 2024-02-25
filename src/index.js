@@ -14,7 +14,7 @@ import Super from "./features/super/Super";
 import Dep from "./features/super/Dep";
 import Cat from "./features/super/Cat";
 import Sale from "./features/super/Sale";
-import ProdCrud from "./features/prodCrud/prodCrud";
+import ProdCrud from "./features/prodCrud/ProdCrud";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
