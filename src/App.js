@@ -17,11 +17,17 @@ function App() {
       <Nav />
       <div className="container-fluid text-center">
         <div className="row content">
-          <div className="col-sm-2 sidenav sideNavDiv">
+          <div
+            className="col-sm-2 sidenav sideNavDiv"
+            style={{ position: "fixed", left: 0 }}
+          >
             <SideNav />
           </div>
-          <div className="col-sm-8 text-left maincont">
-            <div className="row mytopraw">
+          <div
+            className="col-sm-8 text-left maincont d-flex justify-content-center"
+            style={{ paddingLeft: "33%" }}
+          >
+            <div className="col-sm-12 row mytopraw">
               <div className="col-sm-8">
                 <Grit />
               </div>
@@ -34,7 +40,12 @@ function App() {
             </div>
             <Outlet />
           </div>
-          <Ads />
+          <div
+            className="col-sm-2 sidenav adsDiv"
+            style={{ position: "fixed", right: 0 }}
+          >
+            <Ads />
+          </div>
         </div>
       </div>
       <Footer />

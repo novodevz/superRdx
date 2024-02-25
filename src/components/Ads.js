@@ -2,7 +2,7 @@ import React from "react";
 
 const Ads = () => {
   return (
-    <div className="col-sm-2 sidenav adsDiv">
+    <div>
       <div className="well">
         <p>ADS</p>
       </div>
