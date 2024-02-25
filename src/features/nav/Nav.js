@@ -31,7 +31,7 @@ const Nav = () => {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            {/* Replace <a> with <MyLink> */}
+
             <MyLink to="/" className="navbar-brand">
               super
             </MyLink>
@@ -39,40 +39,44 @@ const Nav = () => {
           <div className="collapse navbar-collapse" id="myNavbar">
             <ul className="nav navbar-nav">
               <li className="active">
-                {/* Replace <a> with <MyLink> */}
                 <MyLink to="/" className="nav-link">
                   Home
                 </MyLink>
               </li>
               <li>
-                {/* Replace <a> with <MyLink> */}
                 <MyLink to="/shop" className="nav-link">
                   shop
                 </MyLink>
               </li>
               <li>
-                {/* Replace <a> with <MyLink> */}
                 <MyLink to="/mycart" className="nav-link">
                   mycart
                 </MyLink>
               </li>
               <li>
-                {/* Replace <a> with <MyLink> */}
                 <MyLink to="/secret" className="nav-link">
                   secret
                 </MyLink>
               </li>
               <li>
-                {/* Replace <a> with <MyLink> */}
                 <MyLink to="/crud" className="nav-link">
                   crud
+                </MyLink>
+              </li>
+              <li>
+                <MyLink to="/crud" className="nav-link">
+                  crud
+                </MyLink>
+              </li>
+              <li>
+                <MyLink to="/crud-product" className="nav-link">
+                  crud-product
                 </MyLink>
               </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
               {login ? (
                 <li>
-                  {/* Replace <a> with <MyLink> */}
                   <MyLink
                     to="/"
                     className="nav-link"
@@ -83,7 +87,6 @@ const Nav = () => {
                 </li>
               ) : (
                 <li>
-                  {/* Replace <a> with <MyLink> */}
                   <MyLink to="/login" className="nav-link">
                     <span className="glyphicon glyphicon-log-in"></span> Login
                   </MyLink>

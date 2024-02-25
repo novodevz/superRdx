@@ -14,6 +14,7 @@ import Super from "./features/super/Super";
 import Dep from "./features/super/Dep";
 import Cat from "./features/super/Cat";
 import Sale from "./features/super/Sale";
+import ProdCrud from "./features/prodCrud/prodCrud";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -33,6 +34,7 @@ root.render(
             <Route path="/shop/:dep" element={<Dep />} />
             <Route path="/shop/:dep/:cat" element={<Cat />} />
             <Route path="/sale" element={<Sale />} />
+            <Route path="/crud-product" element={<ProdCrud />} />
           </Route>
         </Routes>
       </Provider>

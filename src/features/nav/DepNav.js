@@ -5,9 +5,6 @@ const DepNav = () => {
   return (
     <div>
       <p>
-        <MyLink to="/shop/sale">sale</MyLink>
-      </p>
-      <p>
         <MyLink to="/shop/wine">wine</MyLink>
       </p>
       <p>

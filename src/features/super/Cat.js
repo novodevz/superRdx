@@ -52,7 +52,7 @@ const Cat = () => {
               <div className="row g-0">
                 <div className="col-md-4">
                   <img
-                    src={`http://localhost:8000/media/${prod.image}.jpg`}
+                    src={`http://localhost:8000/media/${prod.image}`}
                     className="img-fluid rounded-start"
                     alt={prod.name}
                     style={{ width: "150px" }}
