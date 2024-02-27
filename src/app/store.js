@@ -4,6 +4,7 @@ import crudSlice from "../features/crud/crudSlice";
 import superSliceRdcr from "../features/super/superSlice";
 import navSliceRdcr from "../features/nav/navSlice";
 import cartSliceRdcr from "../features/cart/cartSlice";
+import prodCrudSliceRdcr from "../features/prodCrud/prodCrudSlice";
 export const store = configureStore({
   reducer: {
     auth: authSlice,
@@ -11,5 +12,6 @@ export const store = configureStore({
     super: superSliceRdcr,
     nav: navSliceRdcr,
     cart: cartSliceRdcr,
+    prodCrud: prodCrudSliceRdcr,
   },
 });

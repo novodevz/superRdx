@@ -5,10 +5,10 @@ import {
   slctTTL,
   logoutRdcr,
 } from "../features/auth/authSlice";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const LoginTimer = () => {
-  const nav = useNavigate();
+  // const nav = useNavigate();
   const dsp = useDispatch();
 
   const tokenTimeStamp = useSelector(slctLoginTimeStamp);
@@ -24,7 +24,7 @@ const LoginTimer = () => {
           // Dispatch logout action asynchronously when timer reaches zero
           setTimeout(() => {
             dsp(logoutRdcr());
-            nav("/login");
+            // nav("/login");
           });
           return 0;
         }
@@ -34,6 +34,7 @@ const LoginTimer = () => {
     setTimeRemaining(ttl);
     // Clear interval when component unmounts
     return () => clearInterval(interval);
+    // eslint-disable-next-line
   }, [tokenTimeStamp]);
 
   // Function to format time in HH:MM:SS format

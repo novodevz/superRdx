@@ -1,73 +1,81 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  slcAllProds,
-  slcDeps,
-  slcDepCats,
-  slcError,
-  depSelectedRdcr,
-  getDepCatInfoAPI,
-} from "./prodCrudSlice";
+  getAllProdsAsync,
+  slctProds,
+  slctIsLoading,
+  slctError,
+} from "../super/superSlice";
 
 import axios from "axios";
 
 const ProdCrud = () => {
   const dispatch = useDispatch();
-  // const depSelected = useSelector(slcDepSelected);
-  const allProds = useSelector(slcAllProds);
-  const deps = useSelector(slcDeps);
-  const depCats = useSelector(slcDepCats);
-  const error = useSelector(slcError);
-  // const isLoading = useSelector(slctIsLoading);
+  const prods = useSelector(slctProds);
+  const isLoading = useSelector(slctIsLoading);
+  const error = useSelector(slctError);
+  const [allProducts, setAllProducts] = useState([]);
 
-  // Track whether the API call has been made
-  const [apiCalled, setApiCalled] = useState(false);
+  const [formData, setFormData] = useState({});
 
-  const [formData, setFormData] = useState({
-    name: "",
-    department: "",
-    category: "",
-    description: "",
-    price: "",
-  });
-
-  // // Fetch products when the component mounts
-  // useEffect(() => {
-  //   dispatch(getDepCatInfoAPI());
-  // }, [dispatch]);
-
-  // Fetch products when the component mounts or when department changes, but only if the API call has not been made yet
-  useEffect(() => {
-    if (!apiCalled) {
-      dispatch(getDepCatInfoAPI());
-      setApiCalled(true); // Set apiCalled to true to prevent further calls
-    }
-  }, [dispatch, deps]);
-
-  // Handle input change for text and number fields
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    // dispatch(depSelectedRdcr({ value }));
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-    console.log(formData);
-  };
-
-  // Handle input change for dep, seperate handel, so that the cat display persist
-  const handleDepChange = (e) => {
-    const { name, value } = e.target;
-    dispatch(depSelectedRdcr({ value }));
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-    console.log(formData);
-  };
+  //   const [formData, setFormData] = useState({
+  //     name: "",
+  //     description: "",
+  //     price: "",
+  //     image: "",
+  //     imageFile: null,
+  //     department: "",
+  //     category: "",
+  //   });
 
   // Fetch products when the component mounts
-  useEffect(() => {}, [deps]);
+  useEffect(() => {
+    dispatch(getAllProdsAsync("db/all/categories/products/"));
+  }, [dispatch]);
+
+  // Update allProducts state when prods change
+  useEffect(() => {
+    const updatedAllProducts = [].concat(
+      ...prods.map((category) => category.products)
+    );
+    setAllProducts(updatedAllProducts);
+  }, [prods]);
+
+  // Handle input change for text and number fields
+  //   const handleChange = (e) => {
+  //     setFormData({ ...formData, [e.target.name]: e.target.value });
+  //     console.log(formData);
+  //   };
+
+  //   const handleChange = (e) => {
+  //     const { name, value } = e.target;
+  //     setFormData((prevFormData) => {
+  //       // Check if the key exists in the formData object
+  //       if (prevFormData.hasOwnProperty(name)) {
+  //         // If the key exists, update its value
+  //         return { ...prevFormData, [name]: value };
+  //       } else {
+  //         // If the key doesn't exist, add it dynamically
+  //         return { ...prevFormData, [name]: value };
+  //       }
+  //     });
+  //   };
+
+  //   const handleChange = (e) => {
+  //     const { name, value } = e.target;
+  //     setFormData((prevFormData) => ({
+  //       ...prevFormData,
+  //       [name]: value,
+  //     }));
+  //   };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   // Handle file input change
   const handleFileChange = (e) => {
@@ -76,26 +84,36 @@ const ProdCrud = () => {
       image: e.target.files[0].name,
       imageFile: e.target.files[0],
     });
-    console.log(formData);
   };
+
+  // Handle file input change
+  //   const handleFileChange = (e) => {
+  //     setFormData({ ...formData, image: e.target.files[0] });
+  //     console.log(formData);
+  //   };
 
   // Function to handle form submission and make POST request
   const handleSubmit = async (e) => {
-    console.log(formData);
     e.preventDefault();
     try {
+      // Make sure to set the Content-Type header to 'multipart/form-data'
       const config = {
         headers: {
           "content-type": "multipart/form-data",
         },
       };
-      const response = await axios.post(
-        "http://localhost:8000/add_prod",
-        formData,
-        config
-      );
-      console.log("log: nw prod added successfuly:", response.data);
-      dispatch(getDepCatInfoAPI());
+
+      // Send the POST request
+      axios
+        .post("http://localhost:8000/add_prod", formData, config)
+        .then((response) => {
+          console.log(response.data);
+          dispatch(getAllProdsAsync("db/all/categories/products/")); //refresh ui with the added prod
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      // Optionally, you can fetch updated product data here
     } catch (error) {
       console.error("Error adding product:", error);
     }
@@ -138,29 +156,23 @@ const ProdCrud = () => {
         </label>
         <br />
         <label>
-          <select name="department" onChange={handleDepChange}>
-            <option>select department</option>
-            {deps &&
-              deps.length !== 0 &&
-              deps.map((department) => (
-                <option key={department.id} value={department.id}>
-                  {department.name}
-                </option>
-              ))}
-          </select>
+          Department:
+          <input
+            type="number"
+            name="department"
+            value={formData.department}
+            onChange={handleChange}
+          />
         </label>
         <br />
         <label>
-          <select name="category" onChange={handleChange}>
-            <option>select category</option>
-            {depCats &&
-              depCats.length !== 0 &&
-              depCats.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-          </select>
+          Category:
+          <input
+            type="number"
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+          />
         </label>
         <br />
         <label>
@@ -168,15 +180,16 @@ const ProdCrud = () => {
           <input type="file" name="image" onChange={handleFileChange} />
         </label>
         <br />
+
         <br />
         <button type="submit">Add Product</button>
       </form>
       <hr />
-      {/* {isLoading && <p>Loading...</p>} */}
+      {isLoading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      {allProds && allProds.length !== 0 && (
+      {prods.length !== 0 && (
         <ul>
-          {allProds.map((prod) => (
+          {allProducts.map((prod) => (
             <div
               key={prod.id}
               className="card mb-3"

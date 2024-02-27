@@ -64,11 +64,6 @@ const Nav = () => {
                 </MyLink>
               </li>
               <li>
-                <MyLink to="/crud" className="nav-link">
-                  crud
-                </MyLink>
-              </li>
-              <li>
                 <MyLink to="/crud-product" className="nav-link">
                   crud-product
                 </MyLink>

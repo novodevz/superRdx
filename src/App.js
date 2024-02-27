@@ -10,6 +10,7 @@ import Nav from "./features/nav/Nav";
 import SideNav from "./features/nav/SideNav";
 import { useSelector } from "react-redux";
 import { slctCartProdCnt } from "./features/cart/cartSlice";
+
 function App() {
   const cartProdCount = useSelector(slctCartProdCnt);
   return (
