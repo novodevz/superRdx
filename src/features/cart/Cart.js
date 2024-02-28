@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Cart = ({ count }) => {
   return (
     <div>
-      <Link to="/">
+      <Link to="/mycart">
         <span className="glyphicon glyphicon-shopping-cart" aria-hidden="true">
           {count}
         </span>

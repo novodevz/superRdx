@@ -26,12 +26,27 @@
     background-color: #f1f1f1;
     height: 100%;
     z-index: 500; /* Ensure it appears above other content */
-
+    position: fixed; /* Fix the position */
 }
 
+.left-sidenav {
+    left: 0; /* Position the left sidebar */
+    width: 200px; /* Set width for left sidebar */
+}
+
+.right-sidenav {
+    right: 0; /* Position the right sidebar */
+    width: 200px; /* Set width for right sidebar */
+}
+
+
 .maincont {
-    padding-top: 80px;
+    padding-top: 80px; /* Height of the top navbar */
+    padding-left: 220px; /* Width of the left sidebar */
+    padding-right: 50px;
     padding-bottom: 80px;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */

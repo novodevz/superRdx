@@ -16,35 +16,26 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      <div className="container-fluid text-center">
+      <div className="container-fluid">
         <div className="row content">
-          <div
-            className="col-sm-2 sidenav sideNavDiv"
-            style={{ position: "fixed", left: 0 }}
-          >
+          <div className="col-lg-2 sidenav left-sidenav">
             <SideNav />
           </div>
-          <div
-            className="col-sm-8 text-left maincont"
-            style={{ paddingLeft: "33%" }}
-          >
-            <div className="col-sm-12 row mytopraw">
-              <div className="col-sm-8">
+          <div className="col-lg-8 text-left maincont">
+            <div className="row mytopraw">
+              <div className="col-lg-4">
                 <Grit />
               </div>
-              <div className="col-sm-2">
+              <div className="col-lg-2">
                 <Cart count={cartProdCount} />
               </div>
-              <div className="col-sm-2">
+              <div className="col-lg-2">
                 <LoginTimer />
               </div>
             </div>
             <Outlet />
           </div>
-          <div
-            className="col-sm-2 sidenav adsDiv"
-            style={{ position: "fixed", right: 0 }}
-          >
+          <div className="col-lg-2 sidenav right-sidenav">
             <Ads />
           </div>
         </div>

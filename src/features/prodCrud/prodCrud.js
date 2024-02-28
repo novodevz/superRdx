@@ -42,6 +42,7 @@ const ProdCrud = () => {
       dispatch(getDepCatInfoAPI());
       setApiCalled(true); // Set apiCalled to true to prevent further calls
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, deps]);
 
   // Handle input change for text and number fields
