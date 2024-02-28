@@ -3,16 +3,12 @@ import "./App.css";
 import Footer from "./components/Footer";
 import { Outlet } from "react-router-dom";
 import Ads from "./components/Ads";
-import Grit from "./components/Grit";
-import LoginTimer from "./components/LoginTimer";
-import Cart from "./features/cart/Cart";
 import Nav from "./features/nav/Nav";
 import SideNav from "./features/nav/SideNav";
-import { useSelector } from "react-redux";
-import { slctCartProdCnt } from "./features/cart/cartSlice";
+
+import TopRow from "./components/TopRow";
 
 function App() {
-  const cartProdCount = useSelector(slctCartProdCnt);
   return (
     <div className="App">
       <Nav />
@@ -22,17 +18,7 @@ function App() {
             <SideNav />
           </div>
           <div className="col-lg-8 text-left maincont">
-            <div className="row mytopraw">
-              <div className="col-lg-4">
-                <Grit />
-              </div>
-              <div className="col-lg-2">
-                <Cart count={cartProdCount} />
-              </div>
-              <div className="col-lg-2">
-                <LoginTimer />
-              </div>
-            </div>
+            <TopRow />
             <Outlet />
           </div>
           <div className="col-lg-2 sidenav right-sidenav">

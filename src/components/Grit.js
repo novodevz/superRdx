@@ -11,7 +11,11 @@ const Grit = () => {
   // const register = useSelector(slctRegister);
   // const login = useSelector(slctLogin);
 
-  return <div>{username && <span>welcom {username}</span>}</div>;
+  return (
+    <div>
+      <strong>{username && <span>welcom {username}</span>}</strong>
+    </div>
+  );
 };
 
 export default Grit;

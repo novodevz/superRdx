@@ -14,6 +14,7 @@ const Secret = () => {
         nav("/login");
       }, t);
     }
+    // eslint-disable-next-line
   }, []);
 
   if (login) {

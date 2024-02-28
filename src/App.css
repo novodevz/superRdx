@@ -16,9 +16,10 @@
     height: calc(100vh);
 }
 
-.mytopraw {
-    padding-bottom: 20px;
+.toprowcnt {
+    height: 50px;
 }
+
 
 /* Set gray background color and 100% height */
 .sidenav {
@@ -41,7 +42,7 @@
 
 
 .maincont {
-    padding-top: 80px; /* Height of the top navbar */
+    padding-top: 120px; /* Height of the top navbar */
     padding-left: 220px; /* Width of the left sidebar */
     padding-right: 50px;
     padding-bottom: 80px;

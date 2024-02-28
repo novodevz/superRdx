@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { slctCartProds } from "./cartSlice";
 import Item from "../super/Item";
 import Table from "react-bootstrap/Table";
+import MyLink from "../nav/MyLink";
 
 const MyCart = () => {
   const cartProds = useSelector(slctCartProds);
@@ -18,7 +19,7 @@ const MyCart = () => {
   return (
     <div className="container-fluid">
       <h1>my cart</h1>
-      <p>some text here in p tag</p>
+      {cartProds && cartProds.length === 0 && <p>cart is empty</p>}
 
       <div className="row">
         <div className="col-lg-8">
@@ -28,6 +29,11 @@ const MyCart = () => {
         </div>
         <div className="col-lg-4">
           <h2>balance:</h2> <h3>${totalBalance.toFixed(2)}</h3>
+          {cartProds && cartProds.length !== 0 && (
+            <MyLink to={"/checkout"} className="btn btn-primary">
+              procied to checkout
+            </MyLink>
+          )}
           <hr />
           <Table striped bordered hover>
             <thead>

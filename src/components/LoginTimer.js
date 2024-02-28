@@ -60,7 +60,7 @@ const LoginTimer = () => {
   return (
     <div>
       <div>
-        login time: <span>{formatTime(timeRemaining)}</span>
+        login time left: <span>{formatTime(timeRemaining)}</span>
       </div>
     </div>
   );
