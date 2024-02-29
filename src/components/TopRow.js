@@ -9,25 +9,28 @@ const TopRow = () => {
   const cartProdCount = useSelector(slctCartProdCnt);
   return (
     <div
-      className="container toprowcnt"
       style={{
-        position: "fixed", // Fix the position on the screen
-        top: 70, // Position it at the top
-        width: "66%", // Make it span the full width
-        backgroundColor: "rgba(241, 219, 91, 0.7)", // Example background color
-        zIndex: 1000, // Ensure it appears above other content
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
+        backgroundColor: "white",
+        width: "100%",
+        marginRight: "20px",
+        position: "fixed",
+        top: 50,
+        zIndex: 1000,
       }}
     >
-      <div>
+      <div style={{ marginRight: "20px" }}>
+        {/* Adjust margin as needed */}
         message: <Grit />
       </div>
-      <div>
+      <div style={{ marginRight: "20px" }}>
+        {/* Adjust margin as needed */}
         <Cart count={cartProdCount} />
       </div>
       <div>
+        {/* No need for margin as it's the last item */}
         <LoginTimer />
       </div>
     </div>

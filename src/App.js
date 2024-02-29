@@ -7,26 +7,25 @@ import Nav from "./features/nav/Nav";
 import SideNav from "./features/nav/SideNav";
 
 import TopRow from "./components/TopRow";
+import TestDiv from "./components/TestDiv";
 
 function App() {
   return (
-    <div className="App">
-      <Nav />
-      <div className="container-fluid">
-        <div className="row content">
-          <div className="col-lg-2 sidenav left-sidenav">
-            <SideNav />
-          </div>
-          <div className="col-lg-8 text-left maincont">
-            <TopRow />
-            <Outlet />
-          </div>
-          <div className="col-lg-2 sidenav right-sidenav">
-            <Ads />
-          </div>
+    <div className="App container-fluid">
+      <div className="row content">
+        <Nav />
+        <TopRow />
+        <div className="col-lg-2 sidenav left-sidenav">
+          <SideNav />
         </div>
+        <div className="col-lg-8 text-left maincont">
+          <Outlet />
+        </div>
+        <div className="col-lg-2 sidenav right-sidenav">
+          <Ads />
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 }
