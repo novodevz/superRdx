@@ -31,7 +31,7 @@ const MyCart = () => {
           <h2>balance:</h2> <h3>${totalBalance.toFixed(2)}</h3>
           {cartProds && cartProds.length !== 0 && (
             <MyLink to={"/checkout"} className="btn btn-primary">
-              procied to checkout
+              proceed to checkout
             </MyLink>
           )}
           <hr />
