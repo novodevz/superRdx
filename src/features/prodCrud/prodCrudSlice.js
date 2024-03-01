@@ -1,7 +1,7 @@
 // prodCrudSlice.jd
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getDepCatInfo } from "./prodCrudAPI";
+import { getDepCatInfo, delProd, prodUpd } from "./prodCrudAPI";
 import {
   getRelatedCategories,
   getAllProds,
@@ -29,6 +29,24 @@ export const getDepCatInfoAPI = createAsyncThunk(
     }
   }
 );
+
+export const delProdAPI = createAsyncThunk("prodCrud/delProd", async (id) => {
+  try {
+    const res = delProd(id); // Assuming delProd returns a promise
+    return res;
+  } catch (error) {
+    throw error;
+  }
+});
+
+export const prodUpdAPI = createAsyncThunk("prodCrud/prodUpd", (a) => {
+  try {
+    const res = prodUpd(a);
+    return res;
+  } catch (e) {
+    throw e;
+  }
+});
 
 const prodCrudSlice = createSlice({
   name: "prodCrud",

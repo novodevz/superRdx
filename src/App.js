@@ -7,7 +7,6 @@ import Nav from "./features/nav/Nav";
 import SideNav from "./features/nav/SideNav";
 
 import TopRow from "./components/TopRow";
-import TestDiv from "./components/TestDiv";
 
 function App() {
   return (

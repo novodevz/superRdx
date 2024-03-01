@@ -7,9 +7,11 @@ import {
   slcError,
   depSelectedRdcr,
   getDepCatInfoAPI,
+  prodUpdAPI,
 } from "./prodCrudSlice";
 
 import axios from "axios";
+import { delProdAPI } from "./prodCrudSlice";
 
 const ProdCrud = () => {
   const dispatch = useDispatch();
@@ -102,6 +104,36 @@ const ProdCrud = () => {
     }
   };
 
+  const handelDel = (id) => {
+    dispatch(delProdAPI(id))
+      .then((action) => {
+        // Handle the response as needed
+        console.log(action.type, action.payload);
+        dispatch(getDepCatInfoAPI());
+        return;
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error("Error:", error);
+        // Optionally re-throw the error to propagate it further
+        throw error;
+      });
+  };
+
+  const handelUpd = (id, formD) => {
+    console.log("in handel upd:", formD);
+    dispatch(prodUpdAPI({ id, formD }))
+      .then((action) => {
+        console.log(action.payload);
+        dispatch(getDepCatInfoAPI());
+        return;
+      })
+      .catch((e) => {
+        console.error("err:", e);
+        throw e;
+      });
+  };
+
   return (
     <div>
       <br />
@@ -177,51 +209,55 @@ const ProdCrud = () => {
       {error && <p>Error: {error}</p>}
       {allProds && allProds.length !== 0 && (
         <ul>
-          {allProds.map((prod) => (
-            <div
-              key={prod.id}
-              className="card mb-3"
-              style={{
-                maxWidth: "540px",
-                border: "1px solid #dee2e6",
-                padding: "10px",
-                margin: "5px",
-              }}
-            >
-              <div className="row g-0">
-                <div className="col-md-4">
-                  <img
-                    src={`http://localhost:8000/media/${prod.image}`}
-                    className="img-fluid rounded-start"
-                    alt={prod.name}
-                    style={{ width: "150px" }}
-                  />
-                </div>
-                <div className="col-md-8">
-                  <div className="card-body">
-                    <h5 className="card-title">{prod.name}</h5>
-                    <p className="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <button
-                      className="btn btn-success"
-                      style={{ margin: "5px" }}
-                    >
-                      Update
-                    </button>
-                    <button
-                      className="btn btn-danger"
-                      style={{ margin: "5px" }}
-                    >
-                      Delete
-                    </button>
+          {allProds &&
+            allProds !== 0 &&
+            allProds.map((prod) => (
+              <div
+                key={prod.id}
+                className="card mb-3"
+                style={{
+                  maxWidth: "540px",
+                  border: "1px solid #dee2e6",
+                  padding: "10px",
+                  margin: "5px",
+                }}
+              >
+                <div className="row g-0">
+                  <div className="col-md-4">
+                    <img
+                      src={`http://localhost:8000/media/${prod.image}`}
+                      className="img-fluid rounded-start"
+                      alt={prod.name}
+                      style={{ width: "150px" }}
+                    />
+                  </div>
+                  <div className="col-md-8">
+                    <div className="card-body">
+                      <h5 className="card-title">{prod.name}</h5>
+                      <p className="card-text">
+                        This is a wider card with supporting text below as a
+                        natural lead-in to additional content. This content is a
+                        little bit longer.
+                      </p>
+                      <button
+                        className="btn btn-success"
+                        style={{ margin: "5px" }}
+                        onClick={() => handelUpd(prod.id, formData)}
+                      >
+                        Update
+                      </button>
+                      <button
+                        className="btn btn-danger"
+                        style={{ margin: "5px" }}
+                        onClick={() => handelDel(prod.id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
         </ul>
       )}
     </div>
