@@ -13,6 +13,7 @@ export const handelToken = (pld, remem) => {
   }
   console.log("User logged in successfully:", tokenClaims);
   console.log("............end of handelToken............");
+  return tokenClaims.isadmin;
 };
 
 export const tokenTTL = () => {

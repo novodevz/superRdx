@@ -10,6 +10,7 @@ const initialState = {
   ttl: 0,
   remember: false,
   reqStat: "",
+  isadmin: false,
 };
 
 export const loginAsc = createAsyncThunk("auth/authFn", async (d) => {
@@ -31,6 +32,10 @@ export const authSlc = createSlice({
       state.loginTimeStamp = "";
       state.ttl = 0;
       state.remember = false;
+      state.isadmin = false;
+    },
+    isadminRdcr: (state) => {
+      state.isadmin = true;
     },
   },
   extraReducers: (builder) => {
@@ -49,7 +54,7 @@ export const authSlc = createSlice({
           state.login = true;
           state.username = action.meta.arg.username;
           state.loginTimeStamp = Date.now();
-          handelToken(action.payload, state.remember.remember);
+          state.isadmin = handelToken(action.payload, state.remember.remember);
           state.ttl = tokenTTL();
         }
       })
@@ -61,8 +66,9 @@ export const authSlc = createSlice({
   },
 });
 
-export const { rememberRdcr, logoutRdcr } = authSlc.actions;
+export const { rememberRdcr, logoutRdcr, isadminRdcr } = authSlc.actions;
 export const slctUsername = (state) => state.auth.username;
+export const slcIsAdmin = (state) => state.auth.isadmin;
 export const slctRegister = (state) => state.auth.register;
 export const slctLogin = (state) => state.auth.login;
 export const slctLoginTimeStamp = (state) => state.auth.loginTimeStamp;
