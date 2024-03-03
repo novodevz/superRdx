@@ -1,13 +1,14 @@
 import { jwtDecode } from "jwt-decode";
 
 export const handelToken = (pld, remem) => {
+  sessionStorage.clear();
   // Handle success response
   console.log("............handelToken............");
   console.log(pld);
   sessionStorage.setItem("access", JSON.stringify(pld.access));
   const tokenClaims = jwtDecode(pld.access);
   console.log(tokenClaims);
-  console.log("remem: ", remem);
+  console.log("rememmmmmmmmmmmmmmmmm: ", remem);
   if (remem) {
     sessionStorage.setItem("refresh", JSON.stringify(pld.refresh));
   }

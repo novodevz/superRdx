@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { authFn } from "./loginAPI";
+import { authFn, refresh } from "./loginAPI";
 import { handelToken, tokenTTL } from "./scripts";
 
 const initialState = {
@@ -16,6 +16,11 @@ const initialState = {
 export const loginAsc = createAsyncThunk("auth/authFn", async (d) => {
   const response = await authFn(d);
   return response.data;
+});
+
+export const refreshAsc = createAsyncThunk("auth/refresh", (a) => {
+  const response = refresh(a);
+  return response;
 });
 
 export const authSlc = createSlice({
@@ -62,6 +67,12 @@ export const authSlc = createSlice({
         state.reqStat = action.meta.requestStatus;
         console.log(state.reqStat);
         // console.log("register: ", state.register, "login: ", state.login);
+      })
+      .addCase(refreshAsc.fulfilled, (state, action) => {
+        console.log("in extra rdcr");
+        state.loginTimeStamp = Date.now();
+        handelToken(action.payload, state.remember.remember);
+        state.ttl = tokenTTL();
       });
   },
 });
@@ -73,6 +84,7 @@ export const slctRegister = (state) => state.auth.register;
 export const slctLogin = (state) => state.auth.login;
 export const slctLoginTimeStamp = (state) => state.auth.loginTimeStamp;
 export const slctTTL = (state) => state.auth.ttl;
+export const slcRemember = (state) => state.auth.remember;
 export default authSlc.reducer;
 
 // export const cntActions = cntSlc.actions;
