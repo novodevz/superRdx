@@ -89,7 +89,7 @@ const PyPlCheckoutBtn = () => {
             purchase_units: cartProds.map((prod, index) => {
               return {
                 amount: {
-                  value: prod.price,
+                  value: (prod.price * prod.amount).toFixed(2), // Calculate total amount and round to 2 decimal places
                   currency_code: "USD", // Change currency code if necessary
                 },
                 description: prod.name,
