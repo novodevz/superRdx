@@ -29,7 +29,7 @@ const Dep = () => {
       {prods.length !== 0 && (
         <ul>
           {prods.products.map((prod) => (
-            <Item prod={prod} />
+            <Item key={crypto.randomUUID()} prod={prod} />
           ))}
         </ul>
       )}

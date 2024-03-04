@@ -25,7 +25,9 @@ const MyCart = () => {
         <div className="col-lg-8">
           {cartProds &&
             cartProds.length !== 0 &&
-            cartProds.map((prod) => <Item prod={prod} />)}
+            cartProds.map((prod) => (
+              <Item key={crypto.randomUUID()} prod={prod} />
+            ))}
         </div>
         <div className="col-lg-4">
           <h2>balance:</h2> <h3>${totalBalance.toFixed(2)}</h3>

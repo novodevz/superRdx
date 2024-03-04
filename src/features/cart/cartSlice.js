@@ -76,29 +76,17 @@ const cartSlice = createSlice({
       state.prods = updatedProds.filter((prod) => prod !== null);
       state.prodCnt = state.prods.length;
     },
+    resetCartRdct: (state, _) => {
+      state.prodCnt = 0;
+      state.prods = [];
+    },
 
     // Add more synchronous reducers as needed
   },
-  // extraReducers: {
-  //   // Define extra reducers here for handling async actions
-  //   [loginAsync.pending]: (state) => {
-  //     state.isLoading = true;
-  //     state.error = null;
-  //   },
-  //   [loginAsync.fulfilled]: (state, action) => {
-  //     state.isLoading = false;
-  //     state.isLoggedIn = true;
-  //     state.username = action.payload.username;
-  //   },
-  //   [loginAsync.rejected]: (state, action) => {
-  //     state.isLoading = false;
-  //     state.error = action.payload.message;
-  //   },
-  //   // Add more extra reducers for other async actions as needed
-  // },
 });
 
-export const { addToCartRdcr, rmvFromCartRdcr } = cartSlice.actions;
+export const { addToCartRdcr, rmvFromCartRdcr, resetCartRdct } =
+  cartSlice.actions;
 
 // Define selector functions here if needed
 export const slctCartProds = (state) => state.cart.prods;
