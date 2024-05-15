@@ -2,10 +2,18 @@
 import axios from "axios";
 
 // Define the base URL for your API
-const BASE_URL = "http://localhost:8000/"; // Replace this with your actual API base URL
+// const BASE_URL = "http://localhost:8000/";
+
+let BASE_URL = "http://localhost:8000/";
+
+if (process.env.REACT_APP_DOCKER === "true") {
+  // Use the Docker URL in production
+  BASE_URL = process.env.REACT_APP_DOCKER_URL;
+}
 
 // Define the function to fetch all products
 const getAllProds = async (path) => {
+  console.log(BASE_URL);
   try {
     // Make an HTTP GET request to fetch all products
     const response = await axios.get(BASE_URL + path);

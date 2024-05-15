@@ -1,5 +1,5 @@
 .App {
-    background-color: rgb(156, 156, 250);
+    background-color: rgb(115, 115, 245);
 }
 /* Remove the navbar's default margin-bottom and rounded borders */ 
 .navbar {
@@ -16,35 +16,18 @@
     height: calc(100vh);
 }
 
+.cont {
+    /* background-color: rgb(115, 115, 245); */
+    background-color: rgb(170, 170, 243);
+    padding: 100px;
+}
 
-/* Set gray background color and 100% height */
 .sidenav {
-    padding-top: 80px;
-    background-color: #f1f1f1;
-    height: 100%;
-    z-index: 1001; /* Ensure it appears above other content */
-    position: fixed; /* Fix the position */
+    background-color: rgb(208, 208, 214);
 }
 
-.left-sidenav {
-    left: 0; /* Position the left sidebar */
-    width: 200px; /* Set width for left sidebar */
-}
-
-.right-sidenav {
-    right: 0; /* Position the right sidebar */
-    width: 200px; /* Set width for right sidebar */
-}
-
-
-.maincont {
-    padding-top: 120px; /* Height of the top navbar */
-    padding-left: 220px; /* Width of the left sidebar */
-    padding-right: 50px;
-    padding-bottom: 80px;
-    margin-left: 50px;
-    margin-right: 50px;
-    left: 200px;
+.ads {
+    background-color: rgb(208, 208, 214);
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */

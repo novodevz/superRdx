@@ -4,6 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { slctLogin } from "../auth/authSlice";
 import { slctCartProds, resetCartRdct } from "./cartSlice";
 import axios from "axios";
+
+let BASEURL = "http://localhost:8000/";
+
+if (process.env.REACT_APP_DOCKER === "true") {
+  // Use the Docker URL in production
+  BASEURL = process.env.REACT_APP_DOCKER_URL;
+}
+
 const PyPlCheckoutBtn = () => {
   //   const [paid, setpaid] = useState(false);
   //   const [error, seterror] = useState(null);
@@ -52,7 +60,7 @@ const PyPlCheckoutBtn = () => {
 
       // Make POST request to create the order
       const response = await axios.post(
-        "http://localhost:8000/create_order/",
+        BASEURL + "create_order/",
         {
           order: orderData,
           order_items: orderItemsData,

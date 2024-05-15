@@ -5,22 +5,23 @@ import { Outlet } from "react-router-dom";
 import Ads from "./components/Ads";
 import Nav from "./features/nav/Nav";
 import SideNav from "./features/nav/SideNav";
-
 import TopRow from "./components/TopRow";
 
 function App() {
   return (
-    <div className="App container-fluid">
-      <div className="row content">
+    <div className="App container-fluid" style={{ paddingTop: "55px" }}>
+      <div className="row">
         <Nav />
         <TopRow />
-        <div className="col-lg-2 sidenav left-sidenav">
+      </div>
+      <div className="row" style={{ paddingTop: "55px" }}>
+        <div className="col-md-2 sidenav">
           <SideNav />
         </div>
-        <div className="col-lg-8 text-left maincont">
+        <div className="col-md-8 cont">
           <Outlet />
         </div>
-        <div className="col-lg-2 sidenav right-sidenav">
+        <div className="col-md-2 ads">
           <Ads />
         </div>
         <Footer />

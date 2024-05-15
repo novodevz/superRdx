@@ -1,7 +1,14 @@
 import axios from "axios";
 
+let BASEURL = "http://localhost:8000/";
+
+if (process.env.REACT_APP_DOCKER === "true") {
+  // Use the Docker URL in production
+  BASEURL = process.env.REACT_APP_DOCKER_URL;
+}
+
 export const authFn = ({ username, password, url }) => {
-  const URL = "http://localhost:8000/" + url + "/";
+  const URL = BASEURL + url + "/";
 
   // Data to be sent in the request body
   const data = {
@@ -19,7 +26,7 @@ export const refresh = async (a) => {
   //     Authorization: `Bearer ${a.access}`,
   //   },
   // };
-  const res = await axios.post("http://localhost:8000/auth/token/refresh/", a);
+  const res = await axios.post(BASEURL + "auth/token/refresh/", a);
   console.log(res, "in refresh api");
   return res.data;
 };

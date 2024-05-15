@@ -1,6 +1,14 @@
 // prodCrudAPI.js
 import axios from "axios";
-const BaseURL = "http://localhost:8000/";
+// const BaseURL = "http://localhost:8000/";
+
+let BaseURL = "http://localhost:8000/";
+
+if (process.env.REACT_APP_DOCKER === "true") {
+  // Use the Docker URL in production
+  BaseURL = process.env.REACT_APP_DOCKER_URL;
+}
+
 // Function to get department and category info
 export const getDepCatInfo = async () => {
   try {

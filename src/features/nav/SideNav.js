@@ -35,8 +35,11 @@ const SideNav = () => {
       </div>
     );
   } else {
-    // Default sidebar content
-    return <div>{/* Default sidebar content */}</div>;
+    return (
+      <div>
+        <MainNav />
+      </div>
+    );
   }
 };
 

@@ -15,10 +15,9 @@ const TopRow = () => {
         justifyContent: "space-around",
         backgroundColor: "white",
         width: "100%",
-        marginRight: "20px",
         position: "fixed",
-        top: 50,
         zIndex: 1000,
+        height: "40px",
       }}
     >
       <div style={{ marginRight: "20px" }}>

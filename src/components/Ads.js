@@ -3,10 +3,10 @@ import React from "react";
 const Ads = () => {
   return (
     <div>
-      <div className="well">
+      <div>
         <p>ADS</p>
       </div>
-      <div className="well">
+      <div>
         <p>ADS</p>
       </div>
     </div>
