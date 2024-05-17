@@ -28,13 +28,15 @@ const ProdCrud = () => {
   // Track whether the API call has been made
   const [apiCalled, setApiCalled] = useState(false);
 
-  const [formData, setFormData] = useState({
+  const initFormData = {
     name: "",
     department: "",
     category: "",
     description: "",
     price: "",
-  });
+  };
+
+  const [formData, setFormData] = useState(initFormData);
 
   // // Fetch products when the component mounts
   // useEffect(() => {
@@ -102,6 +104,7 @@ const ProdCrud = () => {
       );
       console.log("log: nw prod added successfuly:", response.data);
       dispatch(getDepCatInfoAPI());
+      setFormData(initFormData);
     } catch (error) {
       console.error("Error adding product:", error);
     }
@@ -240,11 +243,7 @@ const ProdCrud = () => {
                     <div className="col-md-8">
                       <div className="card-body">
                         <h5 className="card-title">{prod.name}</h5>
-                        <p className="card-text">
-                          This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is
-                          a little bit longer.
-                        </p>
+                        <p className="card-text">{prod.description}</p>
                         <button
                           className="btn btn-success"
                           style={{ margin: "5px" }}

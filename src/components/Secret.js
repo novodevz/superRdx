@@ -27,7 +27,7 @@ const Secret = () => {
     return (
       <div>
         <div style={{ display: "flex", alignItems: "center" }}>
-          <strong style={{ marginRight: "10px", color: "orange" }}>
+          <strong style={{ marginRight: "10px", color: "black" }}>
             not authorized! you are routed to login in:
           </strong>
           <strong>
