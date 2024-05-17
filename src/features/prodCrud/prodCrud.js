@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   slcAllProds,
@@ -37,6 +37,11 @@ const ProdCrud = () => {
   };
 
   const [formData, setFormData] = useState(initFormData);
+
+  // Create references for the select and file input fields
+  const departmentSelectRef = useRef(null);
+  const categorySelectRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   // // Fetch products when the component mounts
   // useEffect(() => {
@@ -102,9 +107,19 @@ const ProdCrud = () => {
         formData,
         config
       );
+      setFormData(initFormData);
+      // Reset select and file input fields
+      if (departmentSelectRef.current) {
+        departmentSelectRef.current.value = "select department";
+      }
+      if (categorySelectRef.current) {
+        categorySelectRef.current.value = "select category";
+      }
+      if (fileInputRef.current) {
+        fileInputRef.current.value = null;
+      }
       console.log("log: nw prod added successfuly:", response.data);
       dispatch(getDepCatInfoAPI());
-      setFormData(initFormData);
     } catch (error) {
       console.error("Error adding product:", error);
     }
@@ -113,6 +128,17 @@ const ProdCrud = () => {
   const handelDel = (id) => {
     dispatch(delProdAPI(id))
       .then((action) => {
+        setFormData(initFormData);
+        // Reset select and file input fields
+        if (departmentSelectRef.current) {
+          departmentSelectRef.current.value = "select department";
+        }
+        if (categorySelectRef.current) {
+          categorySelectRef.current.value = "select category";
+        }
+        if (fileInputRef.current) {
+          fileInputRef.current.value = null;
+        }
         // Handle the response as needed
         console.log(action.type, action.payload);
         dispatch(getDepCatInfoAPI());
@@ -130,6 +156,17 @@ const ProdCrud = () => {
     console.log("in handel upd:", formD);
     dispatch(prodUpdAPI({ id, formD }))
       .then((action) => {
+        setFormData(initFormData);
+        // Reset select and file input fields
+        if (departmentSelectRef.current) {
+          departmentSelectRef.current.value = "select department";
+        }
+        if (categorySelectRef.current) {
+          categorySelectRef.current.value = "select category";
+        }
+        if (fileInputRef.current) {
+          fileInputRef.current.value = null;
+        }
         console.log(action.payload);
         dispatch(getDepCatInfoAPI());
         return;
@@ -180,7 +217,11 @@ const ProdCrud = () => {
           </label>
           <br />
           <label>
-            <select name="department" onChange={handleDepChange}>
+            <select
+              name="department"
+              ref={departmentSelectRef}
+              onChange={handleDepChange}
+            >
               <option>select department</option>
               {deps &&
                 deps.length !== 0 &&
@@ -193,7 +234,11 @@ const ProdCrud = () => {
           </label>
           <br />
           <label>
-            <select name="category" onChange={handleChange}>
+            <select
+              name="category"
+              ref={categorySelectRef}
+              onChange={handleChange}
+            >
               <option>select category</option>
               {depCats &&
                 depCats.length !== 0 &&
@@ -207,7 +252,12 @@ const ProdCrud = () => {
           <br />
           <label>
             Image:
-            <input type="file" name="image" onChange={handleFileChange} />
+            <input
+              type="file"
+              name="image"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+            />
           </label>
           <br />
           <br />
