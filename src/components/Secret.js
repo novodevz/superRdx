@@ -26,13 +26,14 @@ const Secret = () => {
   } else {
     return (
       <div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <strong style={{ marginRight: "10px", color: "black" }}>
-            not authorized! you are routed to login in:
-          </strong>
-          <strong>
+        <div>
+          <h1>not authorized!</h1>
+          <h1 style={{ marginRight: "10px", color: "black" }}>
+            you are routed to login in:
+          </h1>
+          <h1>
             <Timer t={t / 1000} />
-          </strong>
+          </h1>
         </div>
       </div>
     );

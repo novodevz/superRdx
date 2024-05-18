@@ -4,6 +4,7 @@ import {
   slcAllProds,
   slcDeps,
   slcDepCats,
+  slcIsLoading,
   slcError,
   depSelectedRdcr,
   getDepCatInfoAPI,
@@ -22,8 +23,8 @@ const ProdCrud = () => {
   const allProds = useSelector(slcAllProds);
   const deps = useSelector(slcDeps);
   const depCats = useSelector(slcDepCats);
+  const isLoading = useSelector(slcIsLoading);
   const error = useSelector(slcError);
-  // const isLoading = useSelector(slctIsLoading);
 
   // Track whether the API call has been made
   const [apiCalled, setApiCalled] = useState(false);
@@ -176,7 +177,6 @@ const ProdCrud = () => {
         throw e;
       });
   };
-
   if (!isadmin) {
     return <h1>admins only!</h1>;
   } else
@@ -184,6 +184,8 @@ const ProdCrud = () => {
       <div>
         <br />
         <h2>All Products</h2>
+        {isLoading && <p>Loading...</p>}
+        {error && <p>Error: {error}</p>}
         <form onSubmit={handleSubmit}>
           <h5>Add Product:</h5>
           <label>
@@ -264,8 +266,6 @@ const ProdCrud = () => {
           <button type="submit">Add Product</button>
         </form>
         <hr />
-        {/* {isLoading && <p>Loading...</p>} */}
-        {error && <p>Error: {error}</p>}
         {allProds && allProds.length !== 0 && (
           <ul>
             {allProds &&

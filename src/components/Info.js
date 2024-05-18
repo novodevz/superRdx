@@ -1,7 +1,7 @@
 import React from "react";
 
 const Info = () => {
-  return <div>info com</div>;
+  return <h1>info com</h1>;
 };
 
 export default Info;

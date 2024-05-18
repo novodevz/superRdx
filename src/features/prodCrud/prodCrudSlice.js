@@ -15,6 +15,7 @@ const initialState = {
   deps: [],
   depCats: [],
   status: "",
+  isLoading: false,
   error: null,
 };
 
@@ -70,10 +71,12 @@ const prodCrudSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getDepCatInfoAPI.pending, (state, action) => {
+        state.isLoading = true;
         // console.log("Pending action type:", action.type);
         state.status = action.meta.requestStatus;
       })
       .addCase(getDepCatInfoAPI.fulfilled, (state, action) => {
+        state.isLoading = false;
         // console.log("Fulfilled action type:", action.type);
         state.status = action.meta.requestStatus;
         state.data = action.payload;
@@ -82,9 +85,10 @@ const prodCrudSlice = createSlice({
         state.deps = getAllDepsInfo(action.payload);
       })
       .addCase(getDepCatInfoAPI.rejected, (state, action) => {
+        state.isLoading = false;
         // console.log("Rejected action type:", action.type);
         state.status = action.meta.requestStatus;
-        state.error = action.error.message;
+        state.error = "somthing went wrong :(";
       });
   },
 });
@@ -92,6 +96,7 @@ const prodCrudSlice = createSlice({
 export const slcAllProds = (state) => state.prodCrud.allProds;
 export const slcDeps = (state) => state.prodCrud.deps;
 export const slcDepCats = (state) => state.prodCrud.depCats;
+export const slcIsLoading = (state) => state.prodCrud.isLoading;
 export const slcError = (state) => state.prodCrud.error;
 
 export const { depSelectedRdcr } = prodCrudSlice.actions;
