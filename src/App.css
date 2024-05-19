@@ -19,7 +19,8 @@
 .cont {
     /* background-color: rgb(115, 115, 245); */
     background-color: rgb(170, 170, 243);
-    padding: 100px;
+    padding: 10px;
+    margin-bottom: 80px;
 }
 
 .sidenav {
@@ -28,11 +29,16 @@
 
 .ads {
     background-color: rgb(208, 208, 214);
+    margin-bottom: 80px;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
     .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+    .ads {
         height: auto;
         padding: 15px;
     }
@@ -45,6 +51,7 @@
 footer {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     background-color: #555;
     color: white;

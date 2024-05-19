@@ -17,19 +17,18 @@ const MyCart = () => {
   }, 0);
 
   return (
-    <div className="container-fluid">
+    <div className="container">
       <h1>my cart</h1>
       {cartProds && cartProds.length === 0 && <p>cart is empty</p>}
-
       <div className="row">
-        <div className="col-lg-8">
+        <div className="col-lg-5">
           {cartProds &&
             cartProds.length !== 0 &&
             cartProds.map((prod) => (
               <Item key={crypto.randomUUID()} prod={prod} />
             ))}
         </div>
-        <div className="col-lg-4">
+        <div className="col-lg-5">
           <h2>balance:</h2> <h3>${totalBalance.toFixed(2)}</h3>
           {cartProds && cartProds.length !== 0 && (
             <MyLink to={"/checkout"} className="btn btn-primary">
@@ -37,7 +36,7 @@ const MyCart = () => {
             </MyLink>
           )}
           <hr />
-          <Table striped bordered hover>
+          <Table striped bordered hover responsive>
             <thead>
               <tr>
                 <th>#</th>
@@ -56,7 +55,7 @@ const MyCart = () => {
                     <td>{prod.name}</td>
                     <td>${prod.price}</td>
                     <td>{prod.amount}</td>
-                    <td>${prod.price * prod.amount}</td>
+                    <td>${(prod.price * prod.amount).toFixed(2)}</td>
                   </tr>
                 ))}
             </tbody>

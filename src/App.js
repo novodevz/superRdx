@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Footer from "./components/Footer";
 import { Outlet } from "react-router-dom";
-import Ads from "./components/Ads";
+// import Ads from "./components/Ads";
 import Nav from "./features/nav/Nav";
 import SideNav from "./features/nav/SideNav";
 import TopRow from "./components/TopRow";
@@ -18,14 +18,14 @@ function App() {
         <div className="col-md-2 sidenav">
           <SideNav />
         </div>
-        <div className="col-md-8 cont">
+        <div className="col-md-10 cont">
           <Outlet />
         </div>
-        <div className="col-md-2 ads">
+        {/* <div className="col-md-2 ads">
           <Ads />
-        </div>
-        <Footer />
+        </div> */}
       </div>
+      <Footer />
     </div>
   );
 }

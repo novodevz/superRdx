@@ -25,10 +25,10 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div style={{ maxWidth: "800px" }}>
       <h1>Login</h1>
       <br />
-      <div className="">
+      <div>
         <form onSubmit={handleSubmit}>
           {/* Username input */}
           <div

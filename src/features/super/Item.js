@@ -7,6 +7,13 @@ import {
 } from "../cart/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 
+let BASE_URL = "http://localhost:8000/";
+
+if (process.env.REACT_APP_DOCKER === "true") {
+  // Use the Docker URL in production
+  BASE_URL = process.env.REACT_APP_DOCKER_URL;
+}
+
 const Item = ({ prod }) => {
   const dispatch = useDispatch();
   const cartProds = useSelector(slctCartProds);
@@ -16,27 +23,28 @@ const Item = ({ prod }) => {
   };
 
   return (
-    <div>
+    <div className="container">
       <div
         key={prod.id}
-        className="card mb-3"
+        className="card mb-2"
         style={{
-          maxWidth: "500px",
+          maxWidth: "400px",
+          width: "100%",
           border: "1px solid #dee2e6",
           padding: "10px",
           margin: "5px",
         }}
       >
-        <div className="row g-0">
-          <div className="col-lg-4">
+        <div className="row">
+          <div className="col-md-4">
             <img
-              src={`http://localhost:8000/media/${prod.image}`}
+              src={`${BASE_URL}media/${prod.image}`}
               className="img-fluid rounded-start"
               alt={prod.name}
-              style={{ width: "150px" }}
+              style={{ maxWidth: "100%", width: "200px" }}
             />
           </div>
-          <div className="col-lg-8">
+          <div className="col-md-8">
             <div className="card-body">
               <strong className="card-title">{prod.name}</strong>
               <h5>${prod.price}</h5>

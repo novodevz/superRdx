@@ -16,6 +16,13 @@ import { slcIsAdmin } from "../auth/authSlice";
 import axios from "axios";
 import { delProdAPI } from "./prodCrudSlice";
 
+let BASE_URL = "http://localhost:8000/";
+
+if (process.env.REACT_APP_DOCKER === "true") {
+  // Use the Docker URL in production
+  BASE_URL = process.env.REACT_APP_DOCKER_URL;
+}
+
 const ProdCrud = () => {
   const dispatch = useDispatch();
 
@@ -104,7 +111,7 @@ const ProdCrud = () => {
         },
       };
       const response = await axios.post(
-        "http://localhost:8000/add_prod",
+        `${BASE_URL}add_prod`,
         formData,
         config
       );
